@@ -234,3 +234,14 @@ def log_event(message, filename="activity.log"):
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
     with open(filename, "a", encoding="utf-8") as f:
         f.write(f"[{timestamp}] {message}\n")
+        
+        
+def sort_by_rarity(probabilities):
+    """
+    Recebe um dicionário {item: porcentagem} e retorna um item sorteado.
+    Utiliza as chaves como opções e os valores como pesos.
+    """
+    opcoes = list(probabilities.keys())
+    pesos = list(probabilities.values())
+
+    resultado = random.choices(opcoes, weights=pesos, k=1)[0]
